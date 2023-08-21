@@ -4,10 +4,15 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+	Room[] rooms = {new Room(1, 15, false, "SINGLE", "BASIC", true), new Room(2, 22, true, "SINGLE", "BASIC", true), new Room(3, 25, true, "DOUBLE", "VIP", true), new Room(4, 30, true, "DOUBLE", "DELUXE", true)};
 		int operation = start();
 		while (operation == 0) {
 			System.out.println("Valor inválido, abortando programa");
 			operation = start();
+		}
+		
+		if (operation == 1) {
+			reservar(rooms);
 		}
 	}
 	
@@ -44,7 +49,25 @@ public class Main {
 	    else {
 	    	return 0;
 	    }
+	    
+	    
+	  
 	}
 	
-
+	  public static void reservar(Room[] rooms) {
+	 
+	  
+	    System.out.println("Habitaciones disponibles:");
+	    for (int i = 0; i < rooms.length; i++) {
+	    	
+	    	System.out.println("OPCIÓN " + (i + 1) );
+	    	System.out.println("--------------------------");
+	    	System.out.println("Número: " + rooms[i].idRoom);
+	      	System.out.println("Tamaño: " + rooms[i].sizeSquaredMeters + " metros cuadrados");
+	      	System.out.println("Baño privado: " + rooms[i].privateBathroom);
+	      	System.out.println("Tipo de cama: " + rooms[i].bedType);
+	      	System.out.println("Tipo de servicio: " + rooms[i].serviceType);
+	     	System.out.println("");
+	    }
+	  }
 }
