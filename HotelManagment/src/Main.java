@@ -54,10 +54,9 @@ public class Main {
 	  
 	}
 	
-	  public static void reservar(Room[] rooms) {
-	 
-	  
+	  public static void reservar(Room[] rooms) { 
 	    System.out.println("Habitaciones disponibles:");
+	    System.out.println("");
 	    for (int i = 0; i < rooms.length; i++) {
 	    	
 	    	System.out.println("OPCIÓN " + (i + 1) );
@@ -67,7 +66,10 @@ public class Main {
 	      	System.out.println("Baño privado: " + rooms[i].privateBathroom);
 	      	System.out.println("Tipo de cama: " + rooms[i].bedType);
 	      	System.out.println("Tipo de servicio: " + rooms[i].serviceType);
+	      	System.out.println("Diponible: " + rooms[i].disponible);
 	     	System.out.println("");
 	    }
+	    
+	    System.out.println("Seleccione la habitación que desea:");
 	  }
 }
