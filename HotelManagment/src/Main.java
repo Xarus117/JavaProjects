@@ -16,6 +16,9 @@ public class Main {
 			roomSelect = reservar(rooms);
 			if (roomSelect != null) {
 			System.out.println("Has seleccionado la habitación: " + roomSelect.idRoom);
+			if(confirm(roomSelect)) {
+				System.out.println("Felicidades, has seleccionado la habitación " + roomSelect.idRoom);
+			}
 			}
 			else {
 				System.out.println("No has seleccionado ninguna habitación");
@@ -66,7 +69,6 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		boolean checkError = false;
-	 	boolean exists = false;
 	 	Room roomSelect = null;
 	    System.out.println("Habitaciones disponibles:");
 	    System.out.println("");
@@ -105,7 +107,31 @@ public class Main {
 	   
 	  }
 	  
-	  public static void confirm() {
-	
+	  public static boolean confirm(Room roomSelect) {
+	  Scanner input = new Scanner(System.in);
+	  int choice = 0;
+	  boolean checkError = false;
+	  System.out.println("Estás reservando la habitación " + roomSelect.idRoom);
+	  System.out.println("[1] Confirmar reserva");
+	  System.out.println("[0] Cancelar operación");
+	  
+	    while (!checkError) {
+		    try {choice = input.nextInt();
+			checkError = true;
+		    } 
+		    catch (InputMismatchException e) 
+		    {System.out.println("Valor invalido, vuelve a intentarlo:"); 
+		    input.nextLine();
+		    }
+		    }
+	    
+	    if (choice == 1) { 	
+	 	   return true;
+	    }
+	    else {
+	    	return false;
+	    }
+	 
+	  
 	  }
 }
