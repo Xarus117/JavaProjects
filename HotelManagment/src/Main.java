@@ -6,13 +6,20 @@ public class Main {
 	public static void main(String[] args) {
 	Room[] rooms = {new Room(1, 15, false, "SINGLE", "BASIC", true), new Room(2, 22, true, "SINGLE", "BASIC", true), new Room(3, 25, true, "DOUBLE", "VIP", true), new Room(4, 30, true, "DOUBLE", "DELUXE", true)};
 		int operation = start();
+		Room roomSelect;
 		while (operation == 0) {
 			System.out.println("Valor inválido, abortando programa");
 			operation = start();
 		}
 		
 		if (operation == 1) {
-			reservar(rooms);
+			roomSelect = reservar(rooms);
+			if (roomSelect != null) {
+			System.out.println("Has seleccionado la habitación: " + roomSelect.idRoom);
+			}
+			else {
+				System.out.println("No has seleccionado ninguna habitación");
+			}
 		}
 	}
 	
@@ -20,6 +27,7 @@ public class Main {
 	    Scanner input = new Scanner(System.in);
 	    int choice = 0;
 	    boolean checkError = false;
+   
 	
 	    // MENSAJES SELECCIÓN DE OPERACIÓN
 	    
@@ -50,16 +58,21 @@ public class Main {
 	    	return 0;
 	    }
 	    
-	    
+	 
 	  
 	}
 	
-	  public static void reservar(Room[] rooms) { 
+	  public static Room reservar(Room[] rooms) { 
+		Scanner input = new Scanner(System.in);
+		int choice = 0;
+		boolean checkError = false;
+	 	boolean exists = false;
+	 	Room roomSelect = null;
 	    System.out.println("Habitaciones disponibles:");
 	    System.out.println("");
 	    for (int i = 0; i < rooms.length; i++) {
 	    	
-	    	System.out.println("OPCIÓN " + (i + 1) );
+	    	System.out.println("OPCIÓN " + "[" + (i + 1) + "]" );
 	    	System.out.println("--------------------------");
 	    	System.out.println("Número: " + rooms[i].idRoom);
 	      	System.out.println("Tamaño: " + rooms[i].sizeSquaredMeters + " metros cuadrados");
@@ -70,6 +83,29 @@ public class Main {
 	     	System.out.println("");
 	    }
 	    
-	    System.out.println("Seleccione la habitación que desea:");
+	    System.out.println("Seleccione la habitación (Número) que desea:");
+	   
+	    while (!checkError) {
+		    try {choice = input.nextInt();
+			checkError = true;
+		    } 
+		    catch (InputMismatchException e) 
+		    {System.out.println("Valor invalido, vuelve a intentarlo:"); 
+		    input.nextLine();
+		    }
+		    }
+	    
+	    for (int i = 0; i < rooms.length; i++) {
+	    	if (choice == rooms[i].idRoom) {
+	    		roomSelect = rooms[i];
+	    	}
+	    }
+	    
+	   return roomSelect;
+	   
+	  }
+	  
+	  public static void confirm() {
+	
 	  }
 }
