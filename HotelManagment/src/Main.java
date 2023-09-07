@@ -14,7 +14,7 @@ public class Main {
 		}
 		
 		if (operation == 1) {
-			roomSelect = reservar(rooms);
+			roomSelect = reservar(rooms, User);
 			if (roomSelect != null) {
 			System.out.println("Has seleccionado la habitación: " + roomSelect.idRoom);
 			if(confirm(roomSelect)) {
@@ -22,17 +22,27 @@ public class Main {
 			}
 			}
 			else {
-				System.out.println("No has seleccionado ninguna habitación");
+				System.out.println("Error");
 			}
 		}
 		else if (operation == 4) {
 			User = registerUser();
+			System.out.println("¡Te has registrado como usuario con los siguientes datos!");
+			System.out.println("------------------------------------");
+			System.out.print("ID (IMPORTANTE: Es necesario guardar su ID para realizar reservas): ");
 			System.out.println(User.idUser);
+			System.out.print("Nombre: ");
 			System.out.println(User.firstName);
+			System.out.print("Apellido: ");
 			System.out.println(User.lastName);
+			System.out.print("Edad: ");
 			System.out.println(User.age);
+			System.out.print("Email: ");
 			System.out.println(User.email);
+			System.out.print("Teléfono: ");
 			System.out.println(User.phoneNumber);
+			System.out.println("------------------------------------");
+			start();
 		}
 	}
 	
@@ -76,8 +86,9 @@ public class Main {
 	  
 	}
 	
-	  public static Room reservar(Room[] rooms) { 
+	  public static Room reservar(Room[] rooms, User User) { 
 		Scanner input = new Scanner(System.in);
+		int userId = 0;
 		int choice = 0;
 		boolean checkError = false;
 	 	Room roomSelect = null;
@@ -96,8 +107,22 @@ public class Main {
 	     	System.out.println("");
 	    }
 	    
+	    System.out.println("Introduzca su código de usuario:");
+	    while (!checkError) {
+		    try {userId = input.nextInt();
+			checkError = true;
+		    } 
+		    catch (InputMismatchException e) 
+		    {System.out.println("Valor invalido, vuelve a intentarlo:"); 
+		    input.nextLine();
+		    }
+		 }
+	    
+	    if (User != null && userId == User.idUser) {
+	    
 	    System.out.println("Seleccione la habitación (Número) que desea:");
-	   
+	    checkError = false;
+	    
 	    while (!checkError) {
 		    try {choice = input.nextInt();
 			checkError = true;
@@ -107,6 +132,7 @@ public class Main {
 		    input.nextLine();
 		    }
 		    }
+
 	    
 	    for (int i = 0; i < rooms.length; i++) {
 	    	if (choice == rooms[i].idRoom) {
@@ -115,7 +141,11 @@ public class Main {
 	    }
 	    
 	   return roomSelect;
-	   
+	    }
+	    else {
+	    	return null;
+	    }
+	    
 	  }
 	  
 	  public static boolean confirm(Room roomSelect) {
@@ -160,7 +190,8 @@ public class Main {
 		  boolean validationPhoneNumber = false;
 		  System.out.println("");
 		  System.out.println("REGISTRO");
-		  System.out.println("Introduzca su NOMBRE:");
+		  System.out.println("--------------------------");
+		  System.out.println("[1] NOMBRE:");
 		  while (!checkError) {
 		    try {
 		      firstName = input.nextLine();
@@ -179,7 +210,7 @@ public class Main {
 		  }
 		  checkError = false;
 		  if (validationFirstName) {
-		    System.out.println("Introduzca su APELLIDO:");
+		    System.out.println("[2] APELLIDO:");
 		    while (!checkError) {
 		      try {
 		        lastName = input.nextLine();
@@ -199,7 +230,7 @@ public class Main {
 		  }
 		  checkError = false;
 		  if (validationLastName) {
-		    System.out.println("Introduzca su EDAD:");
+		    System.out.println("[3] EDAD:");
 		    while (!checkError) {
 		      try {
 		        age = input.nextInt();
@@ -220,7 +251,7 @@ public class Main {
 		  checkError = false;
 		  input.nextLine();
 		  if (validationAge) {
-		    System.out.println("Introduzca su EMAIL:");
+		    System.out.println("[4] EMAIL:");
 		    while (!checkError) {
 		      try {
 		        email = input.nextLine();
@@ -241,7 +272,7 @@ public class Main {
 		  }
 		  checkError = false;
 		  if (validationEmail) {
-		    System.out.println("Introduzca su NÚMERO DE TELÉFONO:");
+		    System.out.println("[5] NÚMERO DE TELÉFONO:");
 		    while (!checkError) {
 		      try {
 		        phoneNumber = input.nextInt();
