@@ -1,5 +1,4 @@
 import java.sql.Date;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class User {
 	String ID; // DOCUMENTO NACIONAL DE IDENTIFICACIÓN o EXTRANJERO
@@ -15,7 +14,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = age;
-		this.address = 
+		this.address = address;
 		this.email = email;
 	}
 	
