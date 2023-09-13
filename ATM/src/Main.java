@@ -10,7 +10,7 @@ public class Main {
 		
 		do {
 			
-			System.out.println("Welcome to ATM, how we can serve you?\n"
+			System.out.println("Welcome to ATM. How can we serve you?\n"
 					+ "Deposit: 1\nWithDraw: 2\nCount: 3\nExit: 4");
 			
 			input = keyboard.nextInt();
