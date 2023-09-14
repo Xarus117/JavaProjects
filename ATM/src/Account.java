@@ -3,13 +3,15 @@ public class Account {
 
 	//Variables
 	private String iban;
+	private String account_name;
 	private String headline;
 	private float deposit;
 	private String banking_entity;
 	
 	//Constructors
-	public Account(String iban, String headline, float deposit, String banking_entity) {
+	public Account(String iban, String account_name, String headline, float deposit, String banking_entity) {
 		this.iban = iban;
+		this.account_name = account_name;
 		this.headline = headline;
 		this.deposit = deposit;
 		this.banking_entity = banking_entity;
@@ -22,6 +24,8 @@ public class Account {
 	//Getters
 	public String getIban() { return iban; }
 	
+	public String getAccount_name() { return account_name; }
+	
 	public String getHeadline() { return headline; }
 	
 	public float getDeposit() { return deposit; }
@@ -31,6 +35,8 @@ public class Account {
 	//Setters
 	public void setIban(String iban) { this.iban = iban; }
 
+	public void setAccount_name(String account_name) { this.account_name = account_name; }
+	
 	public void setHeadline(String headline) { this.headline = headline; }
 
 	public void setDeposit(float deposit) { this.deposit = deposit; }

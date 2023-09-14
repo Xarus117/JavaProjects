@@ -11,33 +11,51 @@ public class Main {
 		boolean checkError = false;
 
 		do {
-			User.registerUser();
-			System.out.println("Welcome to ATM. How can we serve you?\n" + "Deposit: 1\nWithDraw: 2\nCount: 3\nExit: 4");
+			System.out.println("Bienvenido a ATM. ¿En qué puedo ayudarle?\n" + "Ingresar dinero: 1\nExtraer dinero: 2\nMi cuenta: 3\nSalir: 4");
+			
+			checkError = false;
+			
 			while (!checkError) {
 				try {
 					input = keyboard.nextInt();
 					checkError = true;
 				} catch (InputMismatchException e) {
-					System.out.println("Valor invalido, vuelve a intentarlo:");
+					System.out.println("Valor inválido, vuelva a intentarlo");
 					keyboard.nextLine();
 				}
 			}
-			
-			checkError = false;
 
 			if (input == 1) {
-				System.out.println(1);
+				
+				checkError = false;
+				
+				System.out.println("¿Cuánto quiere depositar?");
+				
+				while (!checkError) {
+					try {
+						input = keyboard.nextInt();
+						checkError = true;
+					} catch (InputMismatchException e) {
+						System.out.println("Valor invalido, vuelve a intentarlo");
+						keyboard.nextLine();
+					}
+				}
+				
+				//Llamar al escritor de archivo
+				Writer.write("asdasf");
+				
 			} else if (input == 2) {
-				System.out.println(2);
+				
 
 			} else if (input == 3) {
-				System.out.println(3);
 
+				//Iban, nombre de cuenta, depósito de cuenta y una opción para crear nueva cuenta
 			}
 
 		} while (input != 4);
 
 		System.out.println("Good bye!");
+		keyboard.close();
 	}
 
 }
