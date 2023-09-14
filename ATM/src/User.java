@@ -161,6 +161,7 @@ public class User {
 			}
 		}
 		checkError = false;
+		input.close();
 		return User;
 	}
 

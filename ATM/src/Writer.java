@@ -6,41 +6,45 @@ import java.util.ArrayList;
 public class Writer {
 	
 	public static void write(String iban, String account_name, String headline, double deposit, String banking_entity) {
-		
-		//Llamar al lector y que pase arraylist, modificar arraylist y escribirla
-		
-		ArrayList<String> cuentas = new ArrayList<String>();
+				
+		ArrayList<String> accounts = new ArrayList<String>();
 
 		Boolean checkRep = false;
-		cuentas = Reader.read("src/Assets/Accounts.txt");
+		accounts = Reader.read("src/Assets/Accounts.txt");
 		String data = iban+","+account_name+","+headline+","+deposit+","+banking_entity;
 		
 		try {
 			
-	        BufferedWriter escritor = new BufferedWriter(new FileWriter("src/Assets/Accounts.txt"));
+	        BufferedWriter writer = new BufferedWriter(new FileWriter("src/Assets/Accounts.txt"));
 	        
 	        //For each
-	        for (String cuenta : cuentas) {
+	        for (String account : accounts) {
 	        	
-	        	if (cuenta.startsWith(iban+","+account_name+","+headline) && cuenta.endsWith(banking_entity)) {
+	        	//Comprobar que los datos se repiten, es decir, el usuario está haciendo un ingreso
+	        	if (account.startsWith(iban+","+account_name+","+headline) && account.endsWith(banking_entity)) {
 	        		
-	        		String[] info = cuenta.split(",");
+	        		//Editar arraylist para sumar el depósito y el ingreso
+	        		String[] info = account.split(",");
 	        		double total = Double.parseDouble(info[3]) + deposit;
+	        		//Editar línea del .txt
 	        		info[3] = ""+total;
-	        		escritor.write(info[0]+","+info[1]+","+info[2]+","+info[3]+","+info[4]+"\n");
+	        		writer.write(info[0]+","+info[1]+","+info[2]+","+info[3]+","+info[4]+"\n");
+	        		//Seteamos el boleano a verdadero
 	        		checkRep = true;
 	        		
-	        	} else { escritor.write(cuenta+"\n"); }
+	        	//Sobreescribir la línea del .txt sin editar
+	        	} else { writer.write(account+"\n"); }
 	        	
 	        }
 	        
-	        if (!checkRep) { escritor.write(data+"\n"); checkRep = false;}
+	        //Si se ha editado alguna línea, no se añadirá una nueva, ya que ha complementado otra
+	        if (!checkRep) { writer.write(data+"\n"); }
 	        
-	        	escritor.close();
+	        //Cerramos escritor
+	        writer.close();
 	        System.out.println("El archivo se ha escrito correctamente.");
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+	        
+	    } catch (IOException e) { e.printStackTrace(); }
 	
 	}
 	

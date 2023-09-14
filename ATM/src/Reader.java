@@ -7,19 +7,23 @@ public class Reader {
 
 	public static ArrayList<String> read(String file) {
 		
-		ArrayList<String> lineas = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<String>();
 		
 		try {
-            BufferedReader lector = new BufferedReader(new FileReader(file));
-            String linea;
-            while ((linea = lector.readLine()) != null) {
-                lineas.add(linea);
+			
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            
+            //Añadir todas las líneas del .txt en una arraylist
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
             }
-            lector.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		return lineas;
+            
+            //Cerrar lector
+            reader.close();
+        } catch (IOException e) { e.printStackTrace(); }
+		
+		//Devolver arraylist
+		return lines;
 	}
-	//Guardar en arraylist para luego guardarlo
 }
