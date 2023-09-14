@@ -81,11 +81,11 @@ public class User {
 			try {
 				System.out.println("Número de identificación:");
 				String IDHolder = input.nextLine();
-				if (IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) ||IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) && !Character.isDigit(IDHolder.charAt(8))) {
-				User.setID(IDHolder);
-				checkError = true;
-				}
-				else {
+				if (IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) || IDHolder.length() == 9
+						&& !Character.isDigit(IDHolder.charAt(0)) && !Character.isDigit(IDHolder.charAt(8))) {
+					User.setID(IDHolder);
+					checkError = true;
+				} else {
 					System.out.println("Valor invalido, vuelve a intentarlo:");
 					checkError = false;
 				}
@@ -163,7 +163,15 @@ public class User {
 		checkError = false;
 		return User;
 	}
-	
-	
+
+	public static boolean loginUser(String ID) {
+		String ValorBD = "";
+		if (ID == ValorBD) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 }
