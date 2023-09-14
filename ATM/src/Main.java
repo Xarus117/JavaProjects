@@ -11,6 +11,7 @@ public class Main {
 		boolean checkError = false;
 
 		do {
+			User.registerUser();
 			System.out.println("Welcome to ATM. How can we serve you?\n" + "Deposit: 1\nWithDraw: 2\nCount: 3\nExit: 4");
 			while (!checkError) {
 				try {

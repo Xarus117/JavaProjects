@@ -80,8 +80,15 @@ public class User {
 		while (!checkError) {
 			try {
 				System.out.println("Número de identificación:");
-				User.setID(input.nextLine());
+				String IDHolder = input.nextLine();
+				if (IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) ||IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) && !Character.isDigit(IDHolder.charAt(8))) {
+				User.setID(IDHolder);
 				checkError = true;
+				}
+				else {
+					System.out.println("Valor invalido, vuelve a intentarlo:");
+					checkError = false;
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("Valor invalido, vuelve a intentarlo:");
 				input.nextLine();
@@ -156,5 +163,7 @@ public class User {
 		checkError = false;
 		return User;
 	}
+	
+	
 
 }
