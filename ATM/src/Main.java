@@ -29,7 +29,7 @@ public class Main {
 				
 				checkError = false;
 				
-				System.out.println("¿Cuánto va a depositar?");
+				System.out.println("¿Cuánto quiere depositar?");
 				
 				while (!checkError) {
 					try {
@@ -48,7 +48,6 @@ public class Main {
 				
 
 			} else if (input == 3) {
-				System.out.println(3);
 
 				//Iban, nombre de cuenta, depósito de cuenta y una opción para crear nueva cuenta
 			}
