@@ -41,11 +41,11 @@ public class Main {
 					}
 				}
 				
-				Writer.write();
+				//Llamar al escritor de archivo
+				Writer.write("asdasf");
 				
 			} else if (input == 2) {
 				
-				Reader.read();
 
 			} else if (input == 3) {
 				System.out.println(3);
@@ -56,6 +56,7 @@ public class Main {
 		} while (input != 4);
 
 		System.out.println("Good bye!");
+		keyboard.close();
 	}
 
 }
