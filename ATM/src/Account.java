@@ -5,11 +5,11 @@ public class Account {
 	private String iban;
 	private String account_name;
 	private String headline;
-	private float deposit;
+	private double deposit;
 	private String banking_entity;
 	
 	//Constructors
-	public Account(String iban, String account_name, String headline, float deposit, String banking_entity) {
+	public Account(String iban, String account_name, String headline, double deposit, String banking_entity) {
 		this.iban = iban;
 		this.account_name = account_name;
 		this.headline = headline;
@@ -28,7 +28,7 @@ public class Account {
 	
 	public String getHeadline() { return headline; }
 	
-	public float getDeposit() { return deposit; }
+	public double getDeposit() { return deposit; }
 
 	public String getBanking_entity() { return banking_entity; }
 
@@ -39,7 +39,7 @@ public class Account {
 	
 	public void setHeadline(String headline) { this.headline = headline; }
 
-	public void setDeposit(float deposit) { this.deposit = deposit; }
+	public void setDeposit(double deposit) { this.deposit = deposit; }
 
 	public void setBanking_entity(String banking_entity) { this.banking_entity = banking_entity; }
 

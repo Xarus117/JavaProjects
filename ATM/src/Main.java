@@ -42,7 +42,7 @@ public class Main {
 				}
 				
 				//Llamar al escritor de archivo
-				Writer.write("asdasf");
+				Writer.write("ES9121000418450200051332", "Cuenta_Xariiiis", "Cezary Lukasz Gebczyk", 100.00, "BBVA");
 				
 			} else if (input == 2) {
 				
