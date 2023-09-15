@@ -32,7 +32,7 @@ public class Writer {
 	        		//Seteamos el boleano a verdadero
 	        		checkRep = true;
 	        		
-	        	//Sobreescribir la línea del .txt sin editar
+	        	//Añadir línea al .txt
 	        	} else { writer.write(account+"\n"); }
 	        	
 	        }
