@@ -9,14 +9,16 @@ public class User {
 	Date dateOfBirth;
 	String address;
 	String email;
+	String password;
 
-	public User(String ID, String firstName, String lastName, Date age, String address, String email) {
+	public User(String ID, String firstName, String lastName, Date age, String address, String email, String password) {
 		this.ID = ID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = age;
 		this.address = address;
 		this.email = email;
+		this.password = password;
 	}
 
 	// GETTERS
@@ -44,6 +46,10 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
 	// SETTERS
 
@@ -70,19 +76,23 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	// REGISTER
 
 	public static User registerUser() {
 		boolean checkError = false;
-		User User = new User(null, null, null, null, null, null);
+		User User = new User(null, null, null, null, null, null, null);
 		Scanner input = new Scanner(System.in);
 		while (!checkError) {
 			try {
 				System.out.println("Número de identificación:");
 				String IDHolder = input.nextLine();
-				if (IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) || IDHolder.length() == 9
-						&& !Character.isDigit(IDHolder.charAt(0)) && !Character.isDigit(IDHolder.charAt(8))) {
+				if (IDHolder.length() == 9 && !Character.isDigit(IDHolder.charAt(0)) ||
+						Character.isDigit(IDHolder.charAt(0)) && !Character.isDigit(IDHolder.charAt(8))) {
 					User.setID(IDHolder);
 					checkError = true;
 				} else {
@@ -160,19 +170,27 @@ public class User {
 				input.nextLine();
 			}
 		}
+		while (!checkError) {
+			try {
+				System.out.println("Contraseña:");
+				User.setPassword(input.nextLine());
+				//Hacer filtro para prohibir ","
+			} catch (InputMismatchException e) {
+				input.nextLine();
+			}
+		}
 		checkError = false;
-		input.close();
 		return User;
 	}
 
-	public static boolean loginUser(String ID) {
-		String ValorBD = "";
-		if (ID == ValorBD) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
+//	public static boolean loginUser(String ID) {
+//		String ValorBD = "";
+//		if (ID == ValorBD) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//
+//	}
 
 }

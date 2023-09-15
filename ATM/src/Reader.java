@@ -26,4 +26,19 @@ public class Reader {
 		//Devolver arraylist
 		return lines;
 	}
+	
+	public static boolean login(String[] info) {
+		
+		ArrayList<String> users = new ArrayList<String>();
+		
+		users = read("src/Assets/Users.txt");
+		
+		for (String user : users) {
+			if (user.startsWith(info[0] + ",") && user.endsWith("," + info[1])) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

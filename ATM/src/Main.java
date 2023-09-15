@@ -7,14 +7,16 @@ public class Main {
 
 		//Llamamos al escáner
 		Scanner keyboard = new Scanner(System.in);
-
+		
 		//Lo que introduce el usuario por consola
-		int input = 0;
+		int intInput = 0;
+		String[] loginInput = {"", ""};
 		//Para errores
 		boolean checkError = false;
-
+		
 		do {
-			System.out.println("Bienvenido a ATM. ¿En qué puedo ayudarle?\n" + "Ingresar dinero: 1\nExtraer dinero: 2\nMi cuenta: 3\nSalir: 4");
+			
+			System.out.println("Bienvenido/a a ATM. \n" + "Iniciar sesión: 1\nRegistrarse: 2\n");
 			
 			//Setear el boleano en falso
 			checkError = false;
@@ -22,16 +24,57 @@ public class Main {
 			//Revisar errores de entrada
 			while (!checkError) {
 				try {
-					input = keyboard.nextInt();
+					intInput = keyboard.nextInt();
 					checkError = true;
 				} catch (InputMismatchException e) {
-					System.out.println("Valor inválido, vuelva a intentarlo");
+					System.out.println("Valor inválido, vuelva a intentarlo\n");
+					keyboard.nextLine();
+				}
+			}
+						
+			checkError = false;
+			
+			do {
+			
+				if (intInput == 1) {
+					System.out.println("Número de identificación:");
+					loginInput[0] = keyboard.next();
+					
+					System.out.println("Contraseña:");
+					loginInput[1] = keyboard.next();
+				
+					if (Reader.login(loginInput)) { checkError = true; }
+					else { System.out.println("Datos incorrectos\n"); }
+					
+				} else if (intInput == 2) {
+					
+					Writer.register();
+					
+				}
+			
+			} while (!checkError);
+			
+		} while (!checkError);
+		
+		do {
+			System.out.println("\nIngresar dinero: 1\nExtraer dinero: 2\nMi cuenta: 3\nSalir: 4");
+			
+			//Setear el boleano en falso
+			checkError = false;
+			
+			//Revisar errores de entrada
+			while (!checkError) {
+				try {
+					intInput = keyboard.nextInt();
+					checkError = true;
+				} catch (InputMismatchException e) {
+					System.out.println("Valor inválido, vuelva a intentarlo\n");
 					keyboard.nextLine();
 				}
 			}
 
 			//Opción uno
-			if (input == 1) {
+			if (intInput == 1) {
 				
 				//Setear el boleano en falso
 				checkError = false;
@@ -41,10 +84,10 @@ public class Main {
 				//Revisar errores de entrada
 				while (!checkError) {
 					try {
-						input = keyboard.nextInt();
+						intInput = keyboard.nextInt();
 						checkError = true;
 					} catch (InputMismatchException e) {
-						System.out.println("Valor invalido, vuelve a intentarlo");
+						System.out.println("Valor invalido, vuelve a intentarlo\n");
 						keyboard.nextLine();
 					}
 				}
@@ -53,18 +96,18 @@ public class Main {
 				Writer.write("ES9121000418450200051332", "Cuenta_Xariiiis", "Cezary Lukasz Gebczyk", 100.00, "BBVA");
 				
 			//Opción dos
-			} else if (input == 2) {
+			} else if (intInput == 2) {
 				
 			//Opción tres
-			} else if (input == 3) {
+			} else if (intInput == 3) {
 
 			//Iban, nombre de cuenta, depósito de cuenta y una opción para crear nueva cuenta
 			}
 
 		//Opción cuatro
-		} while (input != 4);
+		} while (intInput != 4);
 
-		System.out.println("Good bye!");
+		System.out.println("¡Que tenga un buen día!");
 		//Cerramos teclado
 		keyboard.close();
 	}

@@ -7,10 +7,9 @@ public class Writer {
 	
 	public static void write(String iban, String account_name, String headline, double deposit, String banking_entity) {
 				
-		ArrayList<String> accounts = new ArrayList<String>();
+		ArrayList<String> accounts = Reader.read("src/Assets/Accounts.txt");
 
 		Boolean checkRep = false;
-		accounts = Reader.read("src/Assets/Accounts.txt");
 		String data = iban+","+account_name+","+headline+","+deposit+","+banking_entity;
 		
 		try {
@@ -48,4 +47,35 @@ public class Writer {
 	
 	}
 	
+	public static void register() {
+				
+		ArrayList<String> users = Reader.read("src/Assets/Users.txt");
+
+		User regist = User.registerUser();	
+		
+		Boolean checkError = false;
+		
+		try {
+			
+	        BufferedWriter writer = new BufferedWriter(new FileWriter("src/Assets/Users.txt"));
+	        
+	        //For each
+	        for (String user : users) {
+	        	if (user.startsWith(regist.ID) || user.endsWith(regist.email+","+regist.password)) {
+	        		checkError = true;
+	        	}
+		        	writer.write(user+"\n");	        	
+	        }
+
+			if (!checkError) {
+				writer.write(regist.ID+","+regist.firstName+","+regist.lastName+","+regist.dateOfBirth+","+regist.address+","+regist.email+","+regist.password+"\n");
+			}
+
+			//Cerramos escritor
+	        writer.close();
+	        System.out.println("El archivo se ha escrito correctamente.");
+	        
+	    } catch (IOException e) { e.printStackTrace(); }
+		
+	}
 }
