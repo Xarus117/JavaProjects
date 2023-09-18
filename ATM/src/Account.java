@@ -16,6 +16,16 @@ public class Account {
 		this.deposit = deposit;
 		this.banking_entity = banking_entity;
 	}
+	
+	public Account(String arrayList) {
+		String[] data = arrayList.split(",");
+		
+		this.iban = data[0];
+		this.account_name = data[1];
+		this.headline = data[2];
+		this.deposit = Double.valueOf(data[3]);
+		this.banking_entity = data[4];
+	}
 
 	public Account() {
 		
@@ -31,6 +41,8 @@ public class Account {
 	public double getDeposit() { return deposit; }
 
 	public String getBanking_entity() { return banking_entity; }
+	
+	public String getAll() { return iban + "," + account_name + "," + headline + "," + deposit + "," + banking_entity; }
 
 	//Setters
 	public void setIban(String iban) { this.iban = iban; }

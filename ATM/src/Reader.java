@@ -27,18 +27,39 @@ public class Reader {
 		return lines;
 	}
 	
-	public static boolean login(String[] info) {
+	public static User login(String[] info) {
 		
-		ArrayList<String> users = new ArrayList<String>();
-		
-		users = read("src/Assets/Users.txt");
+		ArrayList<String> users = read("src/Assets/Users.txt");
 		
 		for (String user : users) {
 			if (user.startsWith(info[0] + ",") && user.endsWith("," + info[1])) {
-				return true;
+				User client = new User(user);
+				return client;
 			}
 		}
 		
-		return false;
+		User noUser = new User();
+		return noUser;
+	}
+	
+	public static ArrayList<Account> selectAccount(User user) {
+		
+		ArrayList<String> accounts = read("src/Assets/Accounts.txt");
+		ArrayList<Account> userAccounts = new ArrayList<Account>();
+		
+		try {
+			
+            for (String account : accounts) {
+            	if (account.contains(user.getID())) {
+            		userAccounts.add(new Account(account));
+            		
+            	}
+            }
+			
+		} catch (Exception e) { System.out.println(e); }
+		
+		return userAccounts;
+		
 	}
 }
+//Hash en la contraseña

@@ -20,6 +20,23 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public User(String arrayList) {
+		
+		String[] data = arrayList.split(",");
+		
+		this.ID = data[0];
+		this.firstName = data[1];
+		this.lastName = data[2];
+		this.dateOfBirth = Date.valueOf(data[3]);
+		this.address = data[4];
+		this.email = data[5];
+		this.password = data[6];
+	}
+	
+	public User() {
+		
+	}
 
 	// GETTERS
 

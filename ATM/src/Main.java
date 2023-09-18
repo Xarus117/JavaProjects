@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,16 +8,18 @@ public class Main {
 
 		//Llamamos al escáner
 		Scanner keyboard = new Scanner(System.in);
-		
 		//Lo que introduce el usuario por consola
 		int intInput = 0;
 		String[] loginInput = {"", ""};
 		//Para errores
 		boolean checkError = false;
+		//Objetos
+		User user = new User();
+		ArrayList<Account> userAccounts = new ArrayList<Account>();
 		
 		do {
 			
-			System.out.println("Bienvenido/a a ATM. \n" + "Iniciar sesión: 1\nRegistrarse: 2\n");
+			System.out.println("Iniciar sesión: 1\nRegistrarse: 2\n");
 			
 			//Setear el boleano en falso
 			checkError = false;
@@ -43,7 +46,9 @@ public class Main {
 					System.out.println("Contraseña:");
 					loginInput[1] = keyboard.next();
 				
-					if (Reader.login(loginInput)) { checkError = true; }
+					user = Reader.login(loginInput);
+					
+					if (user.getID() != null && !user.getID().equals("")) { checkError = true; }
 					else { System.out.println("Datos incorrectos\n"); }
 					
 				} else if (intInput == 2) {
@@ -57,7 +62,7 @@ public class Main {
 		} while (!checkError);
 		
 		do {
-			System.out.println("\nIngresar dinero: 1\nExtraer dinero: 2\nMi cuenta: 3\nSalir: 4");
+			System.out.println("\nBienvenid@ " + user.getFirstName() + " " + user.getLastName() + ", ¿qué desea hacer?\n\nIngresar dinero: 1\nRetirar dinero: 2\nMi cuenta: 3\nSalir: 4");
 			
 			//Setear el boleano en falso
 			checkError = false;
@@ -79,12 +84,21 @@ public class Main {
 				//Setear el boleano en falso
 				checkError = false;
 				
-				System.out.println("¿Cuánto quiere depositar?");
+				userAccounts = Reader.selectAccount(user);
+				
+				System.out.println("¿En qué cuenta quiere hacer el depósito?\n");
+				
+				for (Account account : userAccounts) {
+					
+					System.out.println((userAccounts.indexOf(account)+1) + " / " + account.getIban() + " " + account.getAccount_name() + " " + account.getDeposit() + "€: ");
+				}
+							
+				int accountSelected = 0;
 				
 				//Revisar errores de entrada
 				while (!checkError) {
 					try {
-						intInput = keyboard.nextInt();
+						accountSelected = (keyboard.nextInt()-1);
 						checkError = true;
 					} catch (InputMismatchException e) {
 						System.out.println("Valor invalido, vuelve a intentarlo\n");
@@ -92,11 +106,77 @@ public class Main {
 					}
 				}
 				
+				System.out.println("¿Cuánto quiere depositar?");
+				
+				double deposit = 0;
+				
+				checkError = false;
+								
+				//Revisar errores de entrada
+				while (!checkError) {
+					try {
+						deposit = keyboard.nextDouble();
+						checkError = true;
+					} catch (InputMismatchException e) {
+						System.out.println("Valor invalido, vuelve a intentarlo\n");
+						keyboard.nextLine();
+					}
+				}
+				
+				userAccounts.get(accountSelected).setDeposit(userAccounts.get(accountSelected).getDeposit() + deposit);
+				
 				//Llamar al escritor de archivo
-				Writer.write("ES9121000418450200051332", "Cuenta_Xariiiis", "Cezary Lukasz Gebczyk", 100.00, "BBVA");
+				Writer.write(userAccounts.get(accountSelected));
 				
 			//Opción dos
 			} else if (intInput == 2) {
+				
+				//Setear el boleano en falso
+				checkError = false;
+				
+				userAccounts = Reader.selectAccount(user);
+				
+				System.out.println("¿En qué cuenta quiere hacer retirar?\n");
+				
+				for (Account account : userAccounts) {
+					
+					System.out.println((userAccounts.indexOf(account)+1) + " / " + account.getIban() + " " + account.getAccount_name() + " " + account.getDeposit() + "€: ");
+				}
+							
+				int accountSelected = 0;
+				
+				//Revisar errores de entrada
+				while (!checkError) {
+					try {
+						accountSelected = (keyboard.nextInt()-1);
+						checkError = true;
+					} catch (InputMismatchException e) {
+						System.out.println("Valor invalido, vuelve a intentarlo\n");
+						keyboard.nextLine();
+					}
+				}
+				
+				System.out.println("¿Cuánto quiere retirar?");
+				
+				double deposit = 0;
+				
+				checkError = false;
+								
+				//Revisar errores de entrada
+				while (!checkError) {
+					try {
+						deposit = keyboard.nextDouble();
+						checkError = true;
+					} catch (InputMismatchException e) {
+						System.out.println("Valor invalido, vuelve a intentarlo\n");
+						keyboard.nextLine();
+					}
+				}
+				
+				userAccounts.get(accountSelected).setDeposit(userAccounts.get(accountSelected).getDeposit() - deposit);
+				
+				//Llamar al escritor de archivo
+				Writer.write(userAccounts.get(accountSelected));
 				
 			//Opción tres
 			} else if (intInput == 3) {
