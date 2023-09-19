@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Reader {
-
+	
 	public static ArrayList<String> read(String file) {
 		
 		ArrayList<String> lines = new ArrayList<String>();
@@ -28,10 +28,8 @@ public class Reader {
 	}
 	
 	public static User login(String[] info) {
-		
-		ArrayList<String> users = read("src/Assets/Users.txt");
-		
-		for (String user : users) {
+	
+		for (String user : Main.users) {
 			if (user.startsWith(info[0] + ",") && user.endsWith("," + info[1])) {
 				User client = new User(user);
 				return client;
@@ -44,12 +42,11 @@ public class Reader {
 	
 	public static ArrayList<Account> selectAccount(User user) {
 		
-		ArrayList<String> accounts = read("src/Assets/Accounts.txt");
 		ArrayList<Account> userAccounts = new ArrayList<Account>();
 		
 		try {
 			
-            for (String account : accounts) {
+            for (String account : Main.accounts) {
             	if (account.contains(user.getID())) {
             		userAccounts.add(new Account(account));
             		

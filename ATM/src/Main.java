@@ -3,9 +3,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
+	static ArrayList<String> accounts = Reader.read("src/Assets/Accounts.txt");
+	static ArrayList<String> users = Reader.read("src/Assets/Users.txt");
+	
 	public static void main(String[] args) {
 
+		
 		//Llamamos al escáner
 		Scanner keyboard = new Scanner(System.in);
 		//Lo que introduce el usuario por consola
@@ -180,14 +183,13 @@ public class Main {
 				
 			//Opción tres
 			} else if (intInput == 3) {
-
-			//Iban, nombre de cuenta, depósito de cuenta y una opción para crear nueva cuenta
+				Writer.RegisterAccount(user);
 			}
 
 		//Opción cuatro
 		} while (intInput != 4);
 
-		System.out.println("¡Que tenga un buen día!");
+		System.out.println("¡Que tenga un buen y español día!");
 		//Cerramos teclado
 		keyboard.close();
 	}
