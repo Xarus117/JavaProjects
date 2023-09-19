@@ -15,6 +15,7 @@ public class Main {
 		String[] loginInput = {"", ""};
 		//Para errores
 		boolean checkError = false;
+		boolean checkErrorRegister = false;
 		//Objetos
 		User user = new User();
 		ArrayList<Account> userAccounts = new ArrayList<Account>();
@@ -37,7 +38,7 @@ public class Main {
 				}
 			}
 						
-			checkError = false;
+			checkErrorRegister = false;
 			
 			do {
 			
@@ -56,10 +57,12 @@ public class Main {
 				} else if (intInput == 2) {
 					
 					Writer.register();
+					checkErrorRegister = true;
+					checkError = false;
 					
 				}
 			
-			} while (!checkError);
+			} while (!checkErrorRegister);
 			
 		} while (!checkError);
 		
