@@ -7,7 +7,6 @@ public class Main {
 	static ArrayList<String> users = Reader.read("src/Assets/Users.txt");
 	
 	public static void main(String[] args) {
-
 		
 		//Llamamos al escáner
 		Scanner keyboard = new Scanner(System.in);
@@ -93,7 +92,7 @@ public class Main {
 				
 				for (Account account : userAccounts) {
 					
-					System.out.println((userAccounts.indexOf(account)+1) + " / " + account.getIban() + " " + account.getAccount_name() + " " + account.getDeposit() + "€: ");
+					System.out.println((userAccounts.indexOf(account)+1) + " / " + account.getIban() + " " + account.getAccount_name() + " " + account.getDeposit() + "€");
 				}
 							
 				int accountSelected = 0;

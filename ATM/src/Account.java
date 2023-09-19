@@ -1,6 +1,3 @@
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Account {
 
@@ -56,7 +53,7 @@ public class Account {
 	}
 
 	public String getAll() {
-		return iban + "," + account_name + "," + headline + "," + deposit + "," + banking_entity;
+		return (iban + "," + account_name + "," + headline + "," + deposit + "," + banking_entity);
 	}
 
 	// Setters

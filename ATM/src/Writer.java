@@ -37,8 +37,9 @@ public class Writer {
 	        //Si se ha editado alguna línea, no se añadirá una nueva, ya que ha complementado otra
 	        if (!checkRep) { writer.write(userAccount.getAll()+"\n"); }
 	        
-	        Main.accounts = Reader.read("src/Assets/Accounts.txt");
 	        //Cerramos escritor
+	        writer.close();
+	        Main.accounts = Reader.read("src/Assets/Accounts.txt");
 	        return true;
 	        
 	    } catch (IOException e) { e.printStackTrace(); return false; }
@@ -69,6 +70,7 @@ public class Writer {
 				writer.write(regist.ID+","+regist.firstName+","+regist.lastName+","+regist.dateOfBirth+","+regist.address+","+regist.email+","+regist.password+"\n");
 			}
 
+			writer.close();
 			Main.users = Reader.read("src/Assets/Users.txt");
 	        return true;
 	        
@@ -81,10 +83,11 @@ public class Writer {
 		Scanner input = new Scanner(System.in);
 		Account account = new Account();
 		Random rand = new Random();
+		String IDHolder = "";
 		do {
 			checkError = false;
 			try {
-				String IDHolder = "ES91210004184502000513" + (rand.nextInt(88) + 11);
+				IDHolder = "ES912100041845020005" + (rand.nextInt(8999) + 1001);
 			for (String userAccount : Main.accounts) {
 				if (userAccount.startsWith(IDHolder + ",")) {
 					checkError = true;
@@ -109,6 +112,7 @@ public class Writer {
 			}
 		}
 		
+		account.setIban(IDHolder);
 		account.setDeposit(0);
 		account.setBanking_entity("BBVA");
 		account.setHeadline(user.getID());
