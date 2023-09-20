@@ -56,7 +56,7 @@ public class Main {
 					
 				} else if (intInput == 2) {
 					
-					Writer.register();
+					Writer.registerUser();
 					checkErrorRegister = true;
 					checkError = false;
 					
